@@ -47,8 +47,8 @@ public class UserDashboard extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ModelCourse modelVideo = snapshot.getValue(ModelCourse.class);
-                if (modelVideo.getCategory().equals(category)) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    ModelCourse modelVideo = ds.getValue(ModelCourse.class);
                     videoArrayList.add(modelVideo);
                 }
                 adapterVideo = new CourseListAdapter(UserDashboard.this, videoArrayList);
